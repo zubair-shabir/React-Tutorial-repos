@@ -15,18 +15,28 @@ function App() {
    setTodos(prev => prev.filter(todo => todo.id !== id))
   }
   const updatedTodo = (id, todo) => {
-    setTodos(prev=> prev.map((prevTodo) => (prevTodo.id === id ?  todo :  prevTodo )))
+    // console.log("Update Item")
+    setTodos((prev)=> prev.map((prevTodo) => (prevTodo.id === id ?  todo  :  prevTodo )))
+    console.log("Next Update Item")
+
   }
 
   const toggleComplete = (id) =>  {
-    setTodos(prev =>
+    
+    setTodos((prev) =>
        prev.map((prevTodo) =>
-        prevTodo.id === id ? { ...prevTodo, 
-          completed: !prevTodo.Completed}  : prevTodo ))
+         prevTodo.id === id ? { ...prevTodo,
+          completed: !prevTodo.completed}  : prevTodo ))
+        
   }
 
+//   setTodos((prev) => 
+//   prev.map((prevTodo) => 
+//     prevTodo.id === id ? { ...prevTodo, 
+//       completed: !prevTodo.completed } : prevTodo))
+// }
+
 useEffect(() => {
-  console.log(localStorage.getItem("todos"))
   if(localStorage.getItem("todos") === "") return 
   const Alltodos = JSON.parse(localStorage.getItem("todos"))
   if(Alltodos && Alltodos.length > 0){
@@ -35,6 +45,7 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {  
+  console.log(todos)
   localStorage.setItem("todos",JSON.stringify(todos))
 }, [todos])
 

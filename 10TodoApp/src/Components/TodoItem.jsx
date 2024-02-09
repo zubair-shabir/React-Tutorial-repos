@@ -11,8 +11,9 @@ function TodoItem({ todo }) {
     const {toggleComplete , updatedTodo, removeTodo } = useTodo()
 
     const editTodo = () => {
-        updatedTodo(todo.id, {...todo, todoMsg})
-        setIsTodoEditable = false
+        updatedTodo(todo.id, {...todo, todo : todoMsg})
+        setIsTodoEditable(false)
+        console.log(isTodoEditable)
     }
 
     const toggleCompleted = () => {
